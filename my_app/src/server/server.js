@@ -46,7 +46,6 @@ app.post('/api/geolocation/:params', (req, res) => {
   app.get('/api/geolocation/data', (req, res) => {
     Geolocation.find({}).then((data) => {
       console.log('Az adatok lekérdezése sikeres volt!')
-  
       res.send(data);
     }).catch((err) => {
       console.log('Hiba az adatok lekérdezésekor:', err);
