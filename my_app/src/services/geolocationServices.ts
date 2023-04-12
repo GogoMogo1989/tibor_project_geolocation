@@ -10,7 +10,7 @@ export class GeolocationService {
 
   constructor(private http: HttpClient) { }
 
-  // Helyzetadatok küldése az adatbázisba
+  // Helyadatok küldése az adatbázisba
   sendLocation(latitude: number, longitude: number): Observable<any> {
     const body = { latitude, longitude}; // A helyzetadatokat tartalmazó test
     return this.http.post<any>(this.apiUrl, body); // HTTP POST kérés elküldése
