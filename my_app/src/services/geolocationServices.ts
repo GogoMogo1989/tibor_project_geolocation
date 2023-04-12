@@ -15,7 +15,7 @@ export class GeolocationService {
     const httpOptions = {
       headers: new HttpHeaders({ 'Content-Type': 'application/json' })
     };
-    const body = { latitude, longitude, httpOptions }; // A helyzetadatokat tartalmazó test
+    const body = { latitude, longitude}; // A helyzetadatokat tartalmazó test
 
     return this.http.post<any>(this.apiUrl, body, httpOptions); // HTTP POST kérés elküldése
   }

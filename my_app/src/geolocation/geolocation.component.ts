@@ -1,4 +1,3 @@
-import { HttpHeaders } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { GeolocationService } from 'src/services/geolocationServices';
 
@@ -27,7 +26,7 @@ export class GeolocationComponent implements OnInit {
         (position) => {
           this.latitude = position.coords.latitude; //ha sikerült a lekrédezés, akkor lementjük a vátozókba a kordinátákat
           this.longitude = position.coords.longitude;
-          this.geolocationService.sendLocation(this.latitude, this.longitude).subscribe( // Helyzetadatok elküldése az adatbázisba
+          this.geolocationService.sendLocation(this.latitude, this.longitude).subscribe( // Helyadatok elküldése az adatbázisba
             (response) => {
               console.log('Helyzetadatok sikeresen elküldve az adatbázisba!', response);
             },
