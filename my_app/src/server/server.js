@@ -42,16 +42,16 @@ app.post('/api/geolocation/:params', (req, res) => {
       });
   });
 
-  //Adatok megjelenítése a geolocation-view oldalon
-  app.get('/api/geolocation/data', (req, res) => {
-    Geolocation.find({}).then((data) => {
-      console.log('Az adatok lekérdezése sikeres volt!')
-      res.send(data);
-    }).catch((err) => {
-      console.log('Hiba az adatok lekérdezésekor:', err);
-      res.status(500).send('Hiba az adatok lekérdezésekor!');
-    });
+//Adatok megjelenítése a geolocation-view oldalon
+app.get('/api/geolocation/data', (req, res) => {
+  Geolocation.find({}).then((data) => {
+    console.log('Az adatok lekérdezése sikeres volt!')
+    res.send(data);
+  }).catch((err) => {
+    console.log('Hiba az adatok lekérdezésekor:', err);
+    res.status(500).send('Hiba az adatok lekérdezésekor!');
   });
+});
 
 const port = process.env.PORT || 3000;
 app.listen(port, ()  => console.log(`A szerver fut a ${port}-es porton!`));
