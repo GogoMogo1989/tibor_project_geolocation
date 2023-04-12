@@ -27,16 +27,6 @@ export class GeolocationComponent implements OnInit {
         (position) => {
           this.latitude = position.coords.latitude; //ha sikerült a lekrédezés, akkor lementjük a vátozókba a kordinátákat
           this.longitude = position.coords.longitude;
-
-          // Beállítjuk a kérés fejlécét, hogy tartalmazza a cookie-kat
-          const httpOptions = {
-            headers: new HttpHeaders({
-              'Content-Type': 'application/json',
-              'withCredentials': 'true' // Ez beállítja a 'withCredentials' opciót, ami a cookie-kat küldi a szervernek
-            })
-          };
-
-
           this.geolocationService.sendLocation(this.latitude, this.longitude).subscribe( // Helyzetadatok elküldése az adatbázisba
             (response) => {
               console.log('Helyzetadatok sikeresen elküldve az adatbázisba!', response);
