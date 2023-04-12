@@ -29,7 +29,7 @@ mongoose.connect(url, { useNewUrlParser: true, useUnifiedTopology: true })
 app.post('/api/geolocation/:params', (req, res) => {
     const { latitude, longitude } = req.body; // Az Angular alkalmazás által küldött adatok mentése az adatbázisba
     const ip = req.headers['x-forwarded-for'] || req.socket.remoteAddress;  // Az IP cím lekérése
-    const params = Math.floor(Math.random() * 1000000);
+    const params = Math.floor(Math.random() * 1000000); //Random ID
     console.log(params)
     const location = new Geolocation({ latitude, longitude, ip, params, createdAt: req.currentDateTime});
     location.save()
