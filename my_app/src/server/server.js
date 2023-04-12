@@ -42,6 +42,7 @@ app.post('/api/geolocation/:params', (req, res) => {
       });
   });
 
+  //Adatok megjelenítése a geolocation-view oldalon
   app.get('/api/geolocation/data', (req, res) => {
     Geolocation.find({}).then((data) => {
       console.log('Az adatok lekérdezése sikeres volt!')
