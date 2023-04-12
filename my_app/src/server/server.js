@@ -2,16 +2,14 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const mongoose = require('mongoose');
-const moment = require('moment-timezone');
-const Geolocation = require('./geolocationModelFile')
+const Geolocation = require('./geolocationModelFile') //Mongoose Schema behívása service-ből
 const app = express();
 
 // Middleware-ek beállítása
 app.use(bodyParser.json());
 app.use(cors());
-app.use((req, res, next) => {
-    req.currentDateTime = moment().tz('Europe/Budapest').toDate();
-    console.log(req.currentDateTime)
+app.use((req, res, next) => { //Dátum, és idő generálása
+    req.currentDateTime = new Date()
     next();
   });
 
@@ -27,11 +25,12 @@ mongoose.connect(url, { useNewUrlParser: true, useUnifiedTopology: true })
 
 // Helyadatok mentése az adatbázisba
 app.post('/api/geolocation/:params', (req, res) => {
-    const { latitude, longitude } = req.body; // Az Angular alkalmazás által küldött adatok mentése az adatbázisba
+
+    const { latitude, longitude } = req.body; // A frontend oldal által küldött adatok mentése
     const ip = req.headers['x-forwarded-for'] || req.socket.remoteAddress;  // Az IP cím lekérése
-    const params = Math.floor(Math.random() * 1000000); //Random ID
-    console.log(params)
-    const location = new Geolocation({ latitude, longitude, ip, params, createdAt: req.currentDateTime});
+    const params = Math.floor(Math.random() * 1000000); //Random ID generálása
+ 
+    const location = new Geolocation({ latitude, longitude, ip, params, createdAt: req.currentDateTime}); //Behívott mongoose schema-n keresztül feltöltjük az adatokat
     location.save()
       .then(() => {
         console.log('Helyadatok sikeresen elmentve az adatbázisba!');
