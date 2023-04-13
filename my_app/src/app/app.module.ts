@@ -4,6 +4,8 @@ import { GeolocationComponent } from 'src/geolocation/geolocation.component';
 import { HttpClientModule } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import { GeolocationViewComponent } from 'src/geolocation-view/geolocation-view.component';
+import {CameraComponent} from 'src/camera/camera.component'
+import { WebcamModule} from 'ngx-webcam';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -12,13 +14,15 @@ import { AppComponent } from './app.component';
   declarations: [
     AppComponent,
     GeolocationComponent,
-    GeolocationViewComponent
+    GeolocationViewComponent,
+    CameraComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    CommonModule
+    CommonModule,
+    WebcamModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
