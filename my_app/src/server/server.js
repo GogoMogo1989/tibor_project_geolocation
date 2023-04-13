@@ -2,7 +2,8 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const mongoose = require('mongoose');
-const Geolocation = require('./geolocationModelFile') //Mongoose Schema behívása service-ből
+const Geolocation = require('./geolocationModelFile'); //Helyadatok mentéséhez való mongoose Schema behívása service-ből
+const webcamImagesFileSchema = require('./webcamImagesFile') //Képek mentéséhez való mongoose Schema behívása service-ből
 const app = express();
 
 // Middleware-ek beállítása
@@ -52,6 +53,23 @@ app.get('/api/geolocation/data', (req, res) => {
       res.status(500).send('Hiba az adatok lekérdezésekor!');
     });
   });
+
+//Webkamera képek mentése
+app.post('/api/webcamimagesupload', (req, res) => {
+
+  const {imageAsDataUrl} = req.body;
+
+  const image = new webcamImagesFileSchema({imageAsDataUrl})
+    image.save()
+    .then(() => {
+      console.log('Kép sikeresen elmentve az adatbázisba!');
+      res.status(200).json({ message: 'Kép sikeresen elmentve az adatbázisba!' });
+    })
+    .catch((err) => {
+      console.error('Hiba a kép mentése során:', err);
+      res.status(500).json({ error: 'Hiba a kép mentése során!' });
+    });
+  })
 
 const port = process.env.PORT || 3000;
 app.listen(port, ()  => console.log(`A szerver fut a ${port}-es porton!`));
