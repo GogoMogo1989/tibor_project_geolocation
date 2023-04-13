@@ -6,6 +6,7 @@ import { CommonModule } from '@angular/common';
 import { GeolocationViewComponent } from 'src/geolocation-view/geolocation-view.component';
 import {CameraComponent} from 'src/camera/camera.component'
 import { WebcamModule} from 'ngx-webcam';
+import { CameraViewComponent } from 'src/camera-view/camera-view.component';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -15,7 +16,8 @@ import { AppComponent } from './app.component';
     AppComponent,
     GeolocationComponent,
     GeolocationViewComponent,
-    CameraComponent
+    CameraComponent,
+    CameraViewComponent
   ],
   imports: [
     BrowserModule,

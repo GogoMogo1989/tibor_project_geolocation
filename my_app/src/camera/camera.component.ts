@@ -12,7 +12,6 @@ export class CameraComponent {
 
   constructor(private webcamImagesServices:WebcamImagesServices){}
 
-  public webcamImagesArray: string[] = [];
   public triggerObservable: Subject<void> = new Subject<void>();
 
   // Webkamera képének rögzítése és átméretezése
@@ -27,15 +26,14 @@ export class CameraComponent {
 
   // imageCapture esemény kezelése
   public handleImageCapture(event: WebcamImage): void {
-    this.webcamImagesArray.push(event.imageAsDataUrl);
-    this.webcamImagesServices.sendImage(event.imageAsDataUrl).subscribe( // Képadatok elküldése az adatbázisba
-    (response) => {
-      console.log('Kép sikeresen elküldve az adatbázisba!', response);
-    },
-    (error) => {
-      console.error('Hiba a kép elküldése során:', error);
-    }
-  );
-    console.log(this.webcamImagesArray);
+      this.webcamImagesServices.sendImage(event.imageAsDataUrl).subscribe( // Képadatok elküldése az adatbázisba
+      (response) => {
+        console.log('Kép sikeresen elküldve az adatbázisba!', response);
+        alert('Kép sikeresen mentve!')
+      },
+      (error) => {
+        console.error('Hiba a kép elküldése során:', error);
+      }
+    );
   }
 }

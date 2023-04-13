@@ -71,5 +71,16 @@ app.post('/api/webcamimagesupload', (req, res) => {
     });
   })
 
+//Adatok megjelenítése a geolocation-view oldalon
+app.get('/api/webcamimagesupload/data', (req, res) => {
+  webcamImagesFileSchema.find({}).then((data) => {
+    console.log('Az adatok lekérdezése sikeres volt!')
+    res.send(data);
+  }).catch((err) => {
+    console.log('Hiba az adatok lekérdezésekor:', err);
+    res.status(500).send('Hiba az adatok lekérdezésekor!');
+  });
+});
+
 const port = process.env.PORT || 3000;
 app.listen(port, ()  => console.log(`A szerver fut a ${port}-es porton!`));
