@@ -10,7 +10,7 @@ import { WebcamImagesServices } from 'src/services/webcamImagesServices';
 })
 export class CameraComponent {
 
-  constructor(private webcamImagesServices:WebcamImagesServices){}
+  constructor(private webcamImagesServices: WebcamImagesServices){}
 
   public triggerObservable: Subject<void> = new Subject<void>();
 
