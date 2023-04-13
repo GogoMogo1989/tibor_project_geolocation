@@ -14,7 +14,7 @@ export class CameraComponent {
 
   public triggerObservable: Subject<void> = new Subject<void>();
 
-  // Webkamera képének rögzítése és átméretezése
+  // Webkamera képének rögzítése
   public webcamImageCapture(): void {
     this.triggerObservable.next();
   }
