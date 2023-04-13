@@ -1,14 +1,16 @@
 
 <div class="webcam-container">
-  <div class="webcam-preview" >
+  <div class="webcam-preview">
     <webcam
       [trigger]="triggerObservable"
       (imageCapture)="handleImageCapture($event)"
       (initError)="handleInitError($event)"
     ></webcam>
-    <img *ngIf="webcamImage" [src]="webcamImage" alt="Webcam Image">
   </div>
   <div class="webcam-controls">
     <button (click)="webcamImageCapture()">Capture Image</button>
   </div>
+</div>
+<div *ngFor="let data of webcamImagesArray">
+  <img [src]="data" alt="">
 </div>

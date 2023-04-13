@@ -8,9 +8,8 @@ import { Subject } from 'rxjs';
   styleUrls: ['./camera.component.css']
 })
 export class CameraComponent {
-  @ViewChild('webcam') webcamElement!: ElementRef;
+
   public webcamImagesArray: string[] = [];
-  public webcamImage: string | undefined;
   public triggerObservable: Subject<void> = new Subject<void>();
 
   // Webkamera képének rögzítése és átméretezése
@@ -25,8 +24,6 @@ export class CameraComponent {
 
   // imageCapture esemény kezelése
   public handleImageCapture(event: WebcamImage): void {
-    this.webcamImage = event.imageAsDataUrl;
-    console.log(this.webcamImage);
     this.webcamImagesArray.push(event.imageAsDataUrl);
     console.log(this.webcamImagesArray);
   }
