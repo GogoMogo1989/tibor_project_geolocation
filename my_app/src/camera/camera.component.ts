@@ -19,7 +19,7 @@ export class CameraComponent implements OnInit {
     // Rendelkezésre álló médiaeszközök lekérdezése
     navigator.mediaDevices.enumerateDevices()
       .then(devices => {
-        // Frontoldali kamera keresése
+        // Hátsó kamera keresése
         const backCamera = devices.find(device => device.label.toLowerCase().includes('back'));
         if (backCamera) {
           this.videoOptions.deviceId = { exact: backCamera.deviceId };
@@ -28,7 +28,7 @@ export class CameraComponent implements OnInit {
         }
       })
       .catch(error => {
-        console.error('Hiba a média eszközöknél:', error);
+        console.error('Hiba a médiaeszközöknél:', error);
       });
   }
 
