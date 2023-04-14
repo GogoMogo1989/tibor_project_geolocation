@@ -20,15 +20,15 @@ export class CameraComponent implements OnInit {
     navigator.mediaDevices.enumerateDevices()
       .then(devices => {
         // Frontoldali kamera keresése
-        const frontCamera = devices.find(device => device.label.toLowerCase().includes('front'));
-        if (frontCamera) {
-          this.videoOptions.deviceId = { exact: frontCamera.deviceId };
+        const backCamera = devices.find(device => device.label.toLowerCase().includes('back'));
+        if (backCamera) {
+          this.videoOptions.deviceId = { exact: backCamera.deviceId };
         } else {
-          console.error('Front camera not found.');
+          console.error('Nincs hátsókamera.');
         }
       })
       .catch(error => {
-        console.error('Error enumerating media devices:', error);
+        console.error('Hiba a média eszközöknél:', error);
       });
   }
 
