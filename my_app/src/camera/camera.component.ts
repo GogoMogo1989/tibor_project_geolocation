@@ -16,7 +16,7 @@ export class CameraComponent implements OnInit {
   constructor(private webcamImagesServices: WebcamImagesServices){}
 
   ngOnInit(): void {
-    // Rendelkezésre álló médiaeszközök lekérdezése
+    // Rendelkezésre álló kamerák lekérdezése
     navigator.mediaDevices.enumerateDevices()
       .then(devices => {
         // Hátsó kamera keresése
