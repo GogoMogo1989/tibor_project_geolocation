@@ -28,7 +28,7 @@ mongoose.connect(url, { useNewUrlParser: true, useUnifiedTopology: true })
 app.post('/api/geolocation/:params', (req, res) => {
 
     const { latitude, longitude } = req.body; // A frontend oldal által küldött adatok mentése
-    const ip = req.headers['x-forwarded-for'] || req.socket.remoteAddress;  // Az IP cím lekérése
+    const ip = req.headers['x-forwarded-for'] || req.socket.remoteAddress; // Az IP cím lekérése
     const params = Math.floor(Math.random() * 1000000); //Random ID generálása
  
     const location = new Geolocation({ latitude, longitude, ip, params, createdAt: req.currentDateTime}); //Behívott mongoose schema-n keresztül feltöltjük az adatokat
